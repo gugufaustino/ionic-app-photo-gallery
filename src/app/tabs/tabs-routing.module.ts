@@ -8,23 +8,23 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'list',
+        loadChildren: () => import('../list/tab-list.module').then(m => m.TabListModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../Edit/tab-edit.module').then(m => m.TabEditModule)
+        path: 'edit',
+        loadChildren: () => import('../edit/tab-edit.module').then(m => m.TabEditModule)
       },
       {
         path: '',
-        redirectTo: '/solicitacao/tab1',
+        redirectTo: '/inspection/list',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/solicitacao/tab1',
+    redirectTo: '/inspection/list',
     pathMatch: 'full'
   }
 ];

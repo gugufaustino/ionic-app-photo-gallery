@@ -3,13 +3,13 @@ import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/fo
 
 import { CustomValidators } from 'ng2-validation';
 
-import { Usuario } from '../models/usuario';
+import { Usuario } from '../app-core/models/usuario';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ToastAppService } from '../services/toastapp.service';
-import { FormBaseComponent } from '../services/form-base.component';
-import { ContaService } from '../services/conta.service';
+import { ToastAppService } from '../app-core/services/toastapp.service';
+import { FormBaseComponent } from '../app-core/services/form-base.component';
+import { ContaService } from '../app-core/services/conta.service';
 
 
 @Component({
@@ -81,7 +81,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
     this.toastr.success(["Login realizado com sucesso"], "Bem vindo!", () => {
       this.returnUrl
         ? this.router.navigate([this.returnUrl])
-        : this.router.navigate(['/solicitacao'])
+        : this.router.navigate(['/inspection'])
     });
   }
 

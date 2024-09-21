@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PhotoService } from '../services/photo.service';
+import { PhotoService } from '../app-core/services/photo.service';
 
 @Component({
   selector: 'app-edit-page',

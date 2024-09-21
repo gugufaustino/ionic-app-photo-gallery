@@ -6,10 +6,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ToastAppService } from './services/toastapp.service';
+import { ToastAppService } from './app-core/services/toastapp.service';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ContaService } from './services/conta.service';
+import { ContaService } from './app-core/services/conta.service';
 import { CommonModule } from '@angular/common';
 import {  provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
