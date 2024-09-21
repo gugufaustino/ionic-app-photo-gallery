@@ -59,28 +59,29 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
   }
 
   submitForm() {
-    debugger;
+
     super.validarFormulario(this.componentForm, true);
     if (this.componentForm.dirty && this.componentForm.valid) {
       this.usuario = Object.assign({}, this.usuario, this.componentForm.value)
 
-      this.contaService.login(this.usuario)
-        .subscribe(
-          sucesso => { this.processarSucesso(sucesso) },
-          falha => { this.processarFalha(falha) }
-        );
+      // this.contaService.login(this.usuario)
+      //   .subscribe(
+      //     sucesso =>
+              { this.processarSucesso(null) }
+      //     falha => { this.processarFalha(falha) }
+      //   );
     }
   }
 
   private processarSucesso(response: any) {
     this.componentForm.reset();
     this.errors = [];
-    this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
+    //this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
 
     this.toastr.success(["Login realizado com sucesso"], "Bem vindo!", () => {
       this.returnUrl
         ? this.router.navigate([this.returnUrl])
-        : this.router.navigate(['/welcome'])
+        : this.router.navigate(['/solicitacao'])
     });
   }
 

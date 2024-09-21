@@ -8,7 +8,7 @@ const routes: Routes = [
     path: 'login', component: LoginComponent,
   },
   {
-    path: 'Solicitacao',
+    path: 'solicitacao',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   }
 ];
