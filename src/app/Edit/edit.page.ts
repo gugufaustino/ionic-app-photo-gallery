@@ -4,8 +4,8 @@ import { FormBaseComponent } from '../app-core/util/form-base.component';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { ToastAppService } from '../app-core/services/toastapp.service';
 import { Router } from '@angular/router';
-import { CustomValidators } from 'ng2-validation';
-import { Usuario } from '../app-core/models/usuario';
+import { FirestoreService } from '../app-core/services/firestore.service';
+import { InspecoesModel } from '../app-core/models/inspecoes.model';
 
 @Component({
   selector: 'app-edit-page',
@@ -17,12 +17,13 @@ export class EditPage extends FormBaseComponent implements OnInit, AfterViewInit
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
   controlsFormBase: any;
   public componentForm: FormGroup = new FormGroup({});
-  usuario!: Usuario;
+  inspecaoEdit!: InspecoesModel;
 
   constructor(public photoService: PhotoService,
     private fb: FormBuilder,
     private toastr: ToastAppService,
     private router: Router,
+    private fStorage: FirestoreService
   ) {
     super();
 
@@ -34,7 +35,7 @@ export class EditPage extends FormBaseComponent implements OnInit, AfterViewInit
 
 
     };
-    this.validationMessages = { }
+    this.validationMessages = {}
   }
 
   ngOnInit(): void {
@@ -52,14 +53,15 @@ export class EditPage extends FormBaseComponent implements OnInit, AfterViewInit
 
     super.validarFormulario(this.componentForm, true);
     if (this.componentForm.dirty && this.componentForm.valid) {
-      this.usuario = Object.assign({}, this.usuario, this.componentForm.value)
+      this.inspecaoEdit = Object.assign({}, this.inspecaoEdit, this.componentForm.value)
+      this.inspecaoEdit.date = new Date().toISOString();
 
-      // this.contaService.login(this.usuario)
-      //   .subscribe(
-      //     sucesso =>
-      //  { this.processarSucesso(null) }
-      //     falha => { this.processarFalha(falha) }
-      //   );
+      this.fStorage.addDocument('inspecoes', this.inspecaoEdit).then(() => {
+        this.toastr.success(['Inspeção cadastrado com sucesso!'], 'Sucesso', () => {
+          this.router.navigate(['/inspection/list'])
+        });
+
+      }).catch((error) => { this.toastr.error(error.message, 'Erro') });
     }
   }
 

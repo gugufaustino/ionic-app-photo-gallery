@@ -3,13 +3,15 @@ import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/fo
 
 import { CustomValidators } from 'ng2-validation';
 
-import { Usuario } from '../app-core/models/usuario';
+import { LoginModel } from '../app-core/models/login.model';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastAppService } from '../app-core/services/toastapp.service';
 import { FormBaseComponent } from '../app-core/util/form-base.component';
 import { AuthService } from '../app-core/services/auth.service';
+import { FirebaseError } from '@angular/fire/app';
+import { UserCredential } from '@angular/fire/auth';
 
 
 @Component({
@@ -22,13 +24,13 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
 
   controlsFormBase: any;
   public componentForm: FormGroup = new FormGroup({});
-  usuario!: Usuario
+  usuario!: LoginModel
   formResult: string = '';
   returnUrl: string;
 
 
   constructor(private fb: FormBuilder,
-    private contaService: AuthService,
+    private authService: AuthService,
     private toastr: ToastAppService,
     private router: Router,
     private route: ActivatedRoute) {
@@ -55,28 +57,29 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
 
   ngAfterViewInit(): void {
     super.configurarMensagensValidacaoBase(this.validationMessages);
-    super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm)
+    super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm);
+
+    this.authService.logout();
   }
 
-  submitForm() {
+  async submitForm() {
 
     super.validarFormulario(this.componentForm, true);
     if (this.componentForm.dirty && this.componentForm.valid) {
       this.usuario = Object.assign({}, this.usuario, this.componentForm.value)
 
-      // this.contaService.login(this.usuario)
-      //   .subscribe(
-      //     sucesso =>
-              { this.processarSucesso(null) }
-      //     falha => { this.processarFalha(falha) }
-      //   );
+
+      this.authService.login(this.usuario)
+        .subscribe(
+          sucesso => { this.processarSucesso(sucesso) },
+          falha => { this.processarFalha(falha) }
+        );
     }
   }
 
-  private processarSucesso(response: any) {
+  private processarSucesso(response: UserCredential) {
     this.componentForm.reset();
     this.errors = [];
-    //this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
 
     this.toastr.success(["Login realizado com sucesso"], "Bem vindo!", () => {
       this.returnUrl
@@ -85,9 +88,9 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
     });
   }
 
-  override processarFalha(fail: any) {
-    this.errors = fail.error.errors;
-    this.toastr.error(fail.error.errors.join(), "Erro");
+  override processarFalha(fail: FirebaseError) {
+    console.log(fail)
+    this.toastr.error(fail.message, "Erro");
   }
 
 }

@@ -71,53 +71,53 @@ export abstract class FormBaseComponent implements IFormComponent {
     //nativeElement.attributes[formcontrolname]
   }
 
-  protected mapToModel(source1: MappingModel, source2: any): any {
+  // protected mapToModel(source1: MappingModel, source2: any): any {
 
-    let model = Object.assign({}, source1, source2);
-    var propertys = Reflect.ownKeys(source2)
+  //   let model = Object.assign({}, source1, source2);
+  //   var propertys = Reflect.ownKeys(source2)
 
-    for (let i = 0; i < propertys.length; i++) {
-      const propKey = propertys[i];
-      const propDescr: PropertyDescriptor | undefined = Reflect.getOwnPropertyDescriptor(source2, propKey)
-      if (propDescr !== undefined) {
-        let mapProperty = source1?.mappings.filter(i => i[propKey] != undefined);
+  //   for (let i = 0; i < propertys.length; i++) {
+  //     const propKey = propertys[i];
+  //     const propDescr: PropertyDescriptor | undefined = Reflect.getOwnPropertyDescriptor(source2, propKey)
+  //     if (propDescr !== undefined) {
+  //       let mapProperty = source1?.mappings.filter(i => i[propKey] != undefined);
 
-        if (mapProperty.length == 1) {
-          let mapType = mapProperty[0][propKey];
-          let modelValue = model[propKey];
-          let parsed: any = null;
+  //       if (mapProperty.length == 1) {
+  //         let mapType = mapProperty[0][propKey];
+  //         let modelValue = model[propKey];
+  //         let parsed: any = null;
 
-          if (mapType == "number"
-            && modelValue != null
-            && modelValue != ''
-            && typeof (modelValue) != 'number') // se já é numero nao precisa tratar
-          {
-            if (modelValue.indexOf(",") > 0) // temvirgula é decimal
-              parsed = CurrencyUtils.StringParaDecimal(modelValue);
-            else
-              parsed = CurrencyUtils.ExtractNumber(modelValue);
+  //         if (mapType == "number"
+  //           && modelValue != null
+  //           && modelValue != ''
+  //           && typeof (modelValue) != 'number') // se já é numero nao precisa tratar
+  //         {
+  //           if (modelValue.indexOf(",") > 0) // temvirgula é decimal
+  //             parsed = CurrencyUtils.StringParaDecimal(modelValue);
+  //           else
+  //             parsed = CurrencyUtils.ExtractNumber(modelValue);
 
-            if (isNaN(parsed)) {
-              throw "Erro na conversao de numero em 'mapToModel()'";
-            }
+  //           if (isNaN(parsed)) {
+  //             throw "Erro na conversao de numero em 'mapToModel()'";
+  //           }
 
-            model[propKey] = parsed;
-          } else if (mapType == "number[]" && modelValue != "" && modelValue != null) {
+  //           model[propKey] = parsed;
+  //         } else if (mapType == "number[]" && modelValue != "" && modelValue != null) {
 
-            parsed = this.parseFormArrayToValues(modelValue);
-            model[propKey] = parsed;
-          } else if (mapType == "Date") {
-            if (modelValue != "" && modelValue != null) {
-              model[propKey] = DateUtils.StringParaDate(modelValue.toString());
-            } else {
-              model[propKey] = null;
-            }
-          }
-        }
-      }
-    }
-    return model;
-  }
+  //           parsed = this.parseFormArrayToValues(modelValue);
+  //           model[propKey] = parsed;
+  //         } else if (mapType == "Date") {
+  //           if (modelValue != "" && modelValue != null) {
+  //             model[propKey] = DateUtils.StringParaDate(modelValue.toString());
+  //           } else {
+  //             model[propKey] = null;
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  //   return model;
+  // }
 
   parseFormArrayToValues(values: Number[]): string[] {
 
