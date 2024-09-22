@@ -33,11 +33,7 @@ export class EditPage extends FormBaseComponent implements OnInit, AfterViewInit
 
 
     };
-    this.validationMessages = {
-      // password: {
-      //   rangeLength: 'Tamanho deve ser entre 6 e 15 caracteres',
-      // },
-    }
+    this.validationMessages = { }
   }
 
   ngOnInit(): void {
