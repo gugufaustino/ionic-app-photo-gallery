@@ -1,17 +1,52 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Olá 1
+      Bom Vindo {{NomeUsuario}}<br>
+      <span class="sub-title">Seu acesso foi bem-sucedido</span>
+
     </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Full Ola </ion-title>
+      <ion-title> Bom Vindo {{NomeUsuario}} <br>
+         <span class="sub-title">Seu acesso foi bem-sucedido</span>
+      </ion-title>
+
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 página"></app-explore-container>
+  <ion-list>
+    <ion-grid>
+      <ion-row class="header-row">
+        <ion-col size="2">ID</ion-col>
+        <ion-col size="8">Type</ion-col>
+
+        <ion-col size="2">Status</ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let item of itemList">
+        <ion-col size="2">
+          <!-- <ion-label>{{ item.id }}</ion-label> -->
+          <ion-badge color="primary" class="custom-badge">{{ item.id }}</ion-badge>
+        </ion-col>
+        <ion-col size="8">
+          <ion-label>
+            <h3>{{ item.type }}</h3>
+            <p>{{ item.date }}</p>
+          </ion-label>
+        </ion-col>
+
+        <ion-col size="2" class="ion-text-center ion-align-items-start">
+          <ion-checkbox [(ngModel)]="item.completed" disabled></ion-checkbox>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+
+
 </ion-content>

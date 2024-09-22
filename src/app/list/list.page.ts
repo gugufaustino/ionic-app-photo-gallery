@@ -8,5 +8,11 @@ import { Component } from '@angular/core';
 export class ListPage {
 
   constructor() {}
+  NomeUsuario = 'João';
+  itemList = [
+    { id: '1', type: 'joao@example.com', date: '2020/01/01', completed: true },
+    { id: '2', type: 'maria@example.com' ,  date: '2020/01/01', completed: true},
+    { id: '3', type: 'carlos@example.com',  date: '2020/01/01' , completed: false}
+  ];
 
 }
