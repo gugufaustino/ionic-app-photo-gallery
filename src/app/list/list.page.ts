@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs';
+import { InspecoesModel } from '../app-core/models/inspecoes.model';
+import { InspecoesService } from './../app-core/services/inspecoes';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,13 +10,13 @@ import { Component } from '@angular/core';
 })
 export class ListPage {
 
-  constructor() {}
+  constructor(private inspecoesservice: InspecoesService<InspecoesModel>) {}
+
   NomeUsuario = 'João';
   NomeSeguradora = 'Liberty Seguros';
-  itemList = [
-    { id: '1', type: 'joao@example.com', date: '2020/01/01', completed: true },
-    { id: '2', type: 'maria@example.com' ,  date: '2020/01/01', completed: true},
-    { id: '3', type: 'carlos@example.com',  date: '2020/01/01' , completed: false}
-  ];
+  itemList$: Observable<InspecoesModel[]>  = new Observable<InspecoesModel[]>();
 
+  ionViewDidEnter() {
+    this.itemList$ = this.inspecoesservice.list();
+  }
 }

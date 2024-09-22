@@ -27,7 +27,7 @@
         <ion-col size="3">Concluído</ion-col>
       </ion-row>
 
-      <ion-row *ngFor="let item of itemList">
+      <ion-row *ngFor="let item of itemList$ | async">
         <ion-col size="2">
           <!-- <ion-label>{{ item.id }}</ion-label> -->
           <ion-badge color="primary" class="custom-badge">{{ item.id }}</ion-badge>

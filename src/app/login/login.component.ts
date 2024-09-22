@@ -8,8 +8,8 @@ import { Usuario } from '../app-core/models/usuario';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastAppService } from '../app-core/services/toastapp.service';
-import { FormBaseComponent } from '../app-core/services/form-base.component';
-import { ContaService } from '../app-core/services/conta.service';
+import { FormBaseComponent } from '../app-core/util/form-base.component';
+import { AuthService } from '../app-core/services/auth.service';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
 
 
   constructor(private fb: FormBuilder,
-    private contaService: ContaService,
+    private contaService: AuthService,
     private toastr: ToastAppService,
     private router: Router,
     private route: ActivatedRoute) {

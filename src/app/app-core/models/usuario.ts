@@ -3,8 +3,11 @@ export interface Usuario {
     email: string;
     password: string;
     confirmPassword: string;
-    
+
     nome: string;
     cpf: string;
     telefone: string;
 }
+
+
+

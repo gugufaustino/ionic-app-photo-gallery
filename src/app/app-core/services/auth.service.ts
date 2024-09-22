@@ -10,7 +10,7 @@ import { BaseService } from "./base.service";
 import { Login } from "../models/login";
 
 @Injectable()
-export class ContaService extends BaseService {
+export class AuthService extends BaseService {
 
   private apiUrl = this.UrlApiApplication + "/api/";
     constructor(private http: HttpClient) { super(); }

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { PhotoService } from '../app-core/services/photo.service';
-import { FormBaseComponent } from '../app-core/services/form-base.component';
+import { FormBaseComponent } from '../app-core/util/form-base.component';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { ToastAppService } from '../app-core/services/toastapp.service';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ import { Usuario } from '../app-core/models/usuario';
   styleUrls: ['edit.page.scss']
 })
 export class EditPage extends FormBaseComponent implements OnInit, AfterViewInit {
+
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
   controlsFormBase: any;
   public componentForm: FormGroup = new FormGroup({});

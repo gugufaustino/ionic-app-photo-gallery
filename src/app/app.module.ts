@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { ToastAppService } from './app-core/services/toastapp.service';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ContaService } from './app-core/services/conta.service';
+import { AuthService } from './app-core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import {  provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
@@ -36,7 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ToastAppService,
-    ContaService,
+    AuthService,
     provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: [AppComponent],

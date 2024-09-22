@@ -9,7 +9,6 @@ import { CustomValidators } from 'ng2-validation';
 import { NgxBrazilValidators } from 'ngx-brazil';
 import { FormValidations } from './form-validations';
 import { DateUtils } from './date-utils';
-import { IFormComponent } from './iform.component';
 
 
 declare function translateWithI18next(): any;
@@ -155,5 +154,10 @@ export abstract class FormBaseComponent implements IFormComponent {
     this.errors = fail?.error?.errors ?? [];
 
   }
+
+}
+
+export interface IFormComponent {
+  mudancasNaoSalvas: boolean;
 
 }
