@@ -1,7 +1,7 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ExploreContainerComponentModule } from '../component/explore-container/explore-container.module';
 import { EditRoutingModule } from './edit-routing.module';
@@ -15,7 +15,9 @@ import { EditPage } from './edit.page';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    EditRoutingModule
+    EditRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [EditPage]
 })
