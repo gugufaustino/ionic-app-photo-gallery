@@ -1,9 +1,7 @@
-import { InspecoesModel } from './../models/inspecoes.model';
+import { InspecoesModel } from '../models/inspecoes.model';
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 
 import { Observable, of } from "rxjs";
-import { catchError, map } from "rxjs/operators";
 
 import { BaseService } from "./base.service";
 import { FirestoreService } from "./firestore.service";

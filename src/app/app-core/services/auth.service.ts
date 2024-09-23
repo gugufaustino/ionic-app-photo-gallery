@@ -11,15 +11,13 @@ import { Auth, EmailAuthProvider, onAuthStateChanged, signInWithCredential, sign
 export class AuthService extends BaseService {
 
   private apiUrl = this.UrlApiApplication + "/api/";
-  constructor(private http: HttpClient,
-    private auth: Auth,
-
+  constructor(private auth: Auth
   ) { super(); }
 
 
-    login(login: LoginModel): Observable<UserCredential>{
-      const authCredential = EmailAuthProvider.credential(login.email, login.password);
-      return from(signInWithCredential(this.auth, authCredential));
+  login(login: LoginModel): Observable<UserCredential> {
+    const authCredential = EmailAuthProvider.credential(login.email, login.password);
+    return from(signInWithCredential(this.auth, authCredential));
   }
 
 
@@ -35,7 +33,7 @@ export class AuthService extends BaseService {
     });
   }
 
-  getCurrentUser()  {
+  getCurrentUser() {
     return this.auth.currentUser;
   }
 
