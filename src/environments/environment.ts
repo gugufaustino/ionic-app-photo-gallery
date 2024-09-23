@@ -7,7 +7,7 @@ export const environment = {
   urlServiceV1: "https://localhost:44390",
 };
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDuQ5JSJd8CNZcygFtsDsIn1Yq6tlz0aPc",
   authDomain: "inspecoes-app-mobile.firebaseapp.com",
   projectId: "inspecoes-app-mobile",

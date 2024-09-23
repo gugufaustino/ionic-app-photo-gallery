@@ -19,6 +19,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { FirestoreService } from './app-core/services/firestore.service';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { firebaseConfig } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -46,7 +47,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     AuthService,
     FirestoreService,
     provideHttpClient(withInterceptorsFromDi()),
-    provideFirebaseApp(() => initializeApp({ "projectId": "inspecoes-app-mobile", "appId": "1:278534006784:web:614123236b56b65e9610e5", "storageBucket": "inspecoes-app-mobile.appspot.com", "apiKey": "AIzaSyDuQ5JSJd8CNZcygFtsDsIn1Yq6tlz0aPc", "authDomain": "inspecoes-app-mobile.firebaseapp.com", "messagingSenderId": "278534006784", "measurementId": "G-GBEJDWD65E" })),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore())

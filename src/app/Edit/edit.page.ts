@@ -59,6 +59,7 @@ export class EditPage extends FormBaseComponent implements OnInit, AfterViewInit
 
       this.fStorage.addDocument('inspecoes', this.inspecaoEdit).then(() => {
         this.toastr.success(['Inspeção cadastrado com sucesso!'], 'Sucesso', () => {
+          this.componentForm.reset();
           this.router.navigate(['/inspection/list'])
         });
 

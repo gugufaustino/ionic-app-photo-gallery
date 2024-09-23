@@ -1,8 +1,8 @@
 import { AuthService } from './../app-core/services/auth.service';
 import { Observable } from 'rxjs';
 import { InspecoesModel } from '../app-core/models/inspecoes.model';
-import { InspecoesService } from '../app-core/services/inspecoes.service';
 import { Component } from '@angular/core';
+import { InspecoesService } from '../app-core/services/inspecoes.service';
 
 @Component({
   selector: 'app-list-page',
