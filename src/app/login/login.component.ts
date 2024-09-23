@@ -88,7 +88,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
     });
   }
 
-  override processarFalha(fail: FirebaseError) {
+    processarFalha(fail: FirebaseError) {
     console.log(fail)
     this.toastr.error(fail.message, "Erro");
   }

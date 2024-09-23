@@ -6,6 +6,7 @@ import { ToastAppService } from '../app-core/services/toastapp.service';
 import { Router } from '@angular/router';
 import { FirestoreService } from '../app-core/services/firestore.service';
 import { InspecoesModel } from '../app-core/models/inspecoes.model';
+import { DateUtils } from '../app-core/util/date-utils';
 
 @Component({
   selector: 'app-edit-page',
@@ -54,7 +55,7 @@ export class EditPage extends FormBaseComponent implements OnInit, AfterViewInit
     super.validarFormulario(this.componentForm, true);
     if (this.componentForm.dirty && this.componentForm.valid) {
       this.inspecaoEdit = Object.assign({}, this.inspecaoEdit, this.componentForm.value)
-      this.inspecaoEdit.date = new Date().toISOString();
+      this.inspecaoEdit.date =  DateUtils.Format(new Date());
 
       this.fStorage.addDocument('inspecoes', this.inspecaoEdit).then(() => {
         this.toastr.success(['Inspeção cadastrado com sucesso!'], 'Sucesso', () => {

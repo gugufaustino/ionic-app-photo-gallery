@@ -1,5 +1,3 @@
-
-
 export interface InspecoesModel {
   id: string;
   produto: string;
